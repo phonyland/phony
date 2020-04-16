@@ -151,7 +151,7 @@ class FakeTest extends BaseTest
     public function can_hexify_with_hash_sign(): void
     {
         $this->assertMatchesRegularExpression(
-            '/^[A-Z0-9]{3}$/',
+            '/^[a-z0-9]{3}$/',
              $this->hexify->invoke(new Fake($this->🙃), '###')
         );
     }
@@ -169,7 +169,7 @@ class FakeTest extends BaseTest
 
         foreach ($result as $item) {
             $this->assertMatchesRegularExpression(
-                '/^[A-Z0-9]{1,3}$/',
+                '/^[a-z0-9]{1,3}$/',
                  $item
             );
         }
