@@ -8,18 +8,18 @@ use RuntimeException;
  * Class Phony.
  *
  *
- * @property \Phony\Fake\Standard\Address        address
- * @property \Phony\Fake\Standard\Address        📫
- * @property \Phony\Fake\Standard\Alphabet       alphabet
- * @property \Phony\Fake\Standard\Alphabet       🔤
- * @property \Phony\Fake\Standard\Ancient        ancient
- * @property \Phony\Fake\Standard\Ancient        📜
- * @property \Phony\Fake\Standard\Artist         artist
- * @property \Phony\Fake\Standard\Coin           coin
- * @property \Phony\Fake\Standard\Cosmere        cosmere
- * @property \Phony\Fake\Standard\Currency       currency
- * @property \Phony\Fake\Standard\Person         person
- * @property \Phony\Fake\Standard\SlackEmoji     slack_emoji
+ * @property-read \Phony\Fake\Standard\Address    address
+ * @property-read \Phony\Fake\Standard\Address    📫
+ * @property-read \Phony\Fake\Standard\Alphabet   alphabet
+ * @property-read \Phony\Fake\Standard\Alphabet   🔤
+ * @property-read \Phony\Fake\Standard\Ancient    ancient
+ * @property-read \Phony\Fake\Standard\Ancient    📜
+ * @property-read \Phony\Fake\Standard\Artist     artist
+ * @property-read \Phony\Fake\Standard\Coin       coin
+ * @property-read \Phony\Fake\Standard\Cosmere    cosmere
+ * @property-read \Phony\Fake\Standard\Currency   currency
+ * @property-read \Phony\Fake\Standard\Person     person
+ * @property-read \Phony\Fake\Standard\SlackEmoji slack_emoji
  */
 class Phony
 {
