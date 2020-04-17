@@ -4,7 +4,7 @@ namespace Phony\Test\Phony;
 
 use Phony\Test\BaseTest;
 
-class PhonyCachingTest extends BaseTest
+class LoaderCacheTest extends BaseTest
 {
     /** @test */
     public function can_get_cache_size(): void
