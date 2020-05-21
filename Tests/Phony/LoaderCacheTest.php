@@ -1,77 +1,60 @@
 <?php
 
-namespace Phonyland\Tests\Phony;
+it('can get cache size', function () {
+    $value = $this->🙃->getCacheSize();
 
-use Phonyland\Tests\BaseTest;
+    $this->assertIsInt($value);
+});
 
-class LoaderCacheTest extends BaseTest
-{
-    /** @test */
-    public function can_get_cache_size(): void
-    {
-        $value = $this->🙃->getCacheSize();
+it('can set cache size', function () {
+    $this->🙃 = $this->🙃->setCacheSize(1_000_000);
 
-        $this->assertIsInt($value);
-    }
+    $this->assertEquals(
+        1_000_000,
+        $this->🙃->getCacheSize()
+    );
+});
 
-    /** @test */
-    public function can_set_cache_size(): void
-    {
-        $this->🙃 = $this->🙃->setCacheSize(1_000_000);
+it('does not cache if size exceed', function () {
+    $this->🙃 = $this->🙃->setCacheSize(0);
 
-        $this->assertEquals(
-            1_000_000,
-            $this->🙃->getCacheSize()
-        );
-    }
+    $this->🙃->alphabet->uppercase_letter;
+    $this->🙃->alphabet->lowercase_letter;
 
-    /** @test */
-    public function do_not_cache_if_size_exceed(): void
-    {
-        $this->🙃 = $this->🙃->setCacheSize(0);
+    $this->assertEquals(
+        0,
+        $this->🙃->getCacheUsage()
+    );
+});
 
-        $this->🙃->alphabet->uppercase_letter;
-        $this->🙃->alphabet->lowercase_letter;
+it('does not cache if it will be exceed with the number of new items', function () {
+    $this->🙃 = $this->🙃->setCacheSize(28);
 
-        $this->assertEquals(
-            0,
-            $this->🙃->getCacheUsage()
-        );
-    }
+    $this->🙃->alphabet->uppercase_letter; // Size of 28
+    $this->🙃->alphabet->lowercase_letter; // Size of 28
 
-    /** @test */
-    public function do_not_cache_if_it_will_be_exceed_with_the_number_of_new_items(): void
-    {
-        $this->🙃 = $this->🙃->setCacheSize(28);
+    $this->assertEquals(
+        28,
+        $this->🙃->getCacheUsage()
+    );
+});
 
-        $this->🙃->alphabet->uppercase_letter; // Size of 28
-        $this->🙃->alphabet->lowercase_letter; // Size of 28
+test('cache size can be dynamically increase', function () {
+    $this->🙃 = $this->🙃->setCacheSize(0);
 
-        $this->assertEquals(
-            28,
-            $this->🙃->getCacheUsage()
-        );
-    }
+    $this->🙃->alphabet->uppercase_letter; // Size of 28
 
-    /** @test */
-    public function cache_size_can_be_dynamically_increase(): void
-    {
-        $this->🙃 = $this->🙃->setCacheSize(0);
+    $this->assertEquals(
+        0,
+        $this->🙃->getCacheUsage()
+    );
 
-        $this->🙃->alphabet->uppercase_letter; // Size of 28
+    $this->🙃 = $this->🙃->setCacheSize(28);
 
-        $this->assertEquals(
-            0,
-            $this->🙃->getCacheUsage()
-        );
+    $this->🙃->alphabet->uppercase_letter; // Size of 28
 
-        $this->🙃 = $this->🙃->setCacheSize(28);
-
-        $this->🙃->alphabet->uppercase_letter; // Size of 28
-
-        $this->assertEquals(
-            28,
-            $this->🙃->getCacheUsage()
-        );
-    }
-}
+    $this->assertEquals(
+        28,
+        $this->🙃->getCacheUsage()
+    );
+});

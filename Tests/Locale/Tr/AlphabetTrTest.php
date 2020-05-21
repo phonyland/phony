@@ -1,36 +1,23 @@
 <?php
 
-namespace Phonyland\Tests\Standard;
+// region Attributes
 
-use Phonyland\Tests\Locale\Tr\BaseTrTest;
+test('uppercase_letter attribute', function () {
+    $value = $this->🙃->alphabet->uppercase_letter;
 
-class AlphabetTrTest extends BaseTrTest
-{
-    // region Attributes
+    $this->assertEquals(1, mb_strlen($value, 'utf8'));
+});
 
-    /** @test */
-    public function uppercase_letter_attribute(): void
-    {
-        $value = $this->🙃->alphabet->uppercase_letter;
+test('lowercase_letter attribute', function () {
+    $value = $this->🙃->alphabet->lowercase_letter;
 
-        $this->assertEquals(1, mb_strlen($value, 'utf8'));
-    }
+    $this->assertEquals(1, mb_strlen($value, 'utf8'));
+});
 
-    /** @test */
-    public function lowercase_letter_attribute(): void
-    {
-        $value = $this->🙃->alphabet->lowercase_letter;
+test('letter attribute', function () {
+    $value = $this->🙃->alphabet->letter;
 
-        $this->assertEquals(1, mb_strlen($value, 'utf8'));
-    }
+    $this->assertEquals(1, mb_strlen($value, 'utf8'));
+});
 
-    /** @test */
-    public function letter_attribute(): void
-    {
-        $value = $this->🙃->alphabet->letter;
-
-        $this->assertEquals(1, mb_strlen($value, 'utf8'));
-    }
-
-    // endregion
-}
+// endregion

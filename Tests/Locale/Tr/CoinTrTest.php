@@ -1,18 +1,11 @@
 <?php
 
-namespace Phonyland\Tests\Locale\Tr;
+// region Attributes
 
-class CoinTrTest extends BaseTrTest
-{
-    // region Attributes
+test('flip attribute', function () {
+    $value = $this->🙃->coin->flip;
 
-    /** @test */
-    public function flip_attribute(): void
-    {
-        $value = $this->🙃->coin->flip;
+    $this->assertIsString($value);
+});
 
-        $this->assertIsString($value);
-    }
-
-    // endregion
-}
+// endregion

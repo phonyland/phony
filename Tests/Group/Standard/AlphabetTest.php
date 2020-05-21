@@ -1,100 +1,73 @@
 <?php
 
-namespace Phonyland\Tests\Group\Standard;
+// region Attributes
 
-use Phonyland\Tests\BaseTest;
+test('uppercase_letter attribute', function () {
+    $value = $this->🙃->alphabet->uppercase_letter;
 
-class AlphabetTest extends BaseTest
-{
-    // region Attributes
+    $this->assertEquals(1, mb_strlen($value, 'utf8'));
+});
 
-    /** @test */
-    public function uppercase_letter_attribute(): void
-    {
-        $value = $this->🙃->alphabet->uppercase_letter;
+test('lowercase_letter attribute', function () {
+    $value = $this->🙃->alphabet->lowercase_letter;
 
-        $this->assertEquals(1, mb_strlen($value, 'utf8'));
-    }
+    $this->assertEquals(1, mb_strlen($value, 'utf8'));
+});
 
-    /** @test */
-    public function lowercase_letter_attribute(): void
-    {
-        $value = $this->🙃->alphabet->lowercase_letter;
+test('letter attribute', function () {
+    $value = $this->🙃->alphabet->letter;
 
-        $this->assertEquals(1, mb_strlen($value, 'utf8'));
-    }
+    $this->assertEquals(1, mb_strlen($value, 'utf8'));
+});
 
-    /** @test */
-    public function letter_attribute(): void
-    {
-        $value = $this->🙃->alphabet->letter;
+test('punctuation_mark attribute', function () {
+    $value = $this->🙃->alphabet->punctuation_mark;
 
-        $this->assertEquals(1, mb_strlen($value, 'utf8'));
-    }
+    $this->assertEquals(1, mb_strlen($value, 'utf8'));
+});
 
-    /** @test */
-    public function punctuation_mark_attribute(): void
-    {
-        $value = $this->🙃->alphabet->punctuation_mark;
+// endregion
 
-        $this->assertEquals(1, mb_strlen($value, 'utf8'));
-    }
+// region Methods
 
-    // endregion
+test('ascii_uppercase_letter() method', function () {
+    $value = $this->🙃->alphabet->ascii_uppercase_letter();
 
-    // region Methods
+    $this->assertEquals(1, mb_strlen($value, 'utf8'));
+});
 
-    /** @test */
-    public function ascii_uppercase_letter_method(): void
-    {
-        $value = $this->🙃->alphabet->ascii_uppercase_letter();
+test('ascii_lowercase_letter() method', function () {
+    $value = $this->🙃->alphabet->ascii_lowercase_letter();
 
-        $this->assertEquals(1, mb_strlen($value, 'utf8'));
-    }
+    $this->assertEquals(1, mb_strlen($value, 'utf8'));
+});
 
-    /** @test */
-    public function ascii_lowercase_letter_method(): void
-    {
-        $value = $this->🙃->alphabet->ascii_lowercase_letter();
+test('ascii_letter() method', function () {
+    $value = $this->🙃->alphabet->ascii_letter();
 
-        $this->assertEquals(1, mb_strlen($value, 'utf8'));
-    }
+    $this->assertEquals(1, mb_strlen($value, 'utf8'));
+});
 
-    /** @test */
-    public function ascii_letter_method(): void
-    {
-        $value = $this->🙃->alphabet->ascii_letter();
+// endregion
 
-        $this->assertEquals(1, mb_strlen($value, 'utf8'));
-    }
+// region Methods as Attributes
 
-    // endregion
+test('ascii_uppercase_letter() method as attribute', function () {
+    $value = $this->🙃->alphabet->ascii_uppercase_letter;
 
-    // region Methods as Attributes
+    $this->assertEquals(1, mb_strlen($value, 'utf8'));
+});
 
-    /** @test */
-    public function ascii_uppercase_letter_method_as_attribute(): void
-    {
-        $value = $this->🙃->alphabet->ascii_uppercase_letter;
+test('ascii_lowercase_letter() method as attribute', function () {
+    $value = $this->🙃->alphabet->ascii_lowercase_letter;
 
-        $this->assertEquals(1, mb_strlen($value, 'utf8'));
-    }
+    $this->assertEquals(1, mb_strlen($value, 'utf8'));
+});
 
-    /** @test */
-    public function ascii_lowercase_letter_method_as_attribute(): void
-    {
-        $value = $this->🙃->alphabet->ascii_lowercase_letter;
+test('ascii_letter() method as attribute', function () {
+    $value = $this->🙃->alphabet->ascii_letter;
 
-        $this->assertEquals(1, mb_strlen($value, 'utf8'));
-    }
+    $this->assertEquals(1, mb_strlen($value, 'utf8'));
+});
 
-    /** @test */
-    public function ascii_letter_method_as_attribute(): void
-    {
-        $value = $this->🙃->alphabet->ascii_letter;
-
-        $this->assertEquals(1, mb_strlen($value, 'utf8'));
-    }
-
-    // endregion
-}
+// endregion

@@ -1,116 +1,85 @@
 <?php
 
-namespace Phonyland\Tests\Group\Standard;
+// region Attributes
 
-use Phonyland\Tests\BaseTest;
+test('name attribute', function () {
+    $value = $this->🙃->person->name;
 
-class PersonTest extends BaseTest
-{
-    // region Attributes
+    $this->assertMatchesRegularExpression('/(\w+\.? ?){2,3}/', $value);
+});
 
-    /** @test */
-    public function name_attribute(): void
-    {
-        $value = $this->🙃->person->name;
+test('name_with_middle attribute', function () {
+    $value = $this->🙃->person->name_with_middle;
 
-        $this->assertMatchesRegularExpression('/(\w+\.? ?){2,3}/', $value);
-    }
+    $this->assertMatchesRegularExpression('/(\w+\.? ?){3,4}/', $value);
+});
 
-    /** @test */
-    public function name_with_middle_attribute(): void
-    {
-        $value = $this->🙃->person->name_with_middle;
+test('first_name attribute', function () {
+    $value = $this->🙃->person->first_name;
 
-        $this->assertMatchesRegularExpression('/(\w+\.? ?){3,4}/', $value);
-    }
+    $this->assertMatchesRegularExpression('/(\w+\.? ?){2,4}/', $value);
+});
 
-    /** @test */
-    public function first_name_attribute(): void
-    {
-        $value = $this->🙃->person->first_name;
+test('middle_name attribute', function () {
+    $value = $this->🙃->person->middle_name;
 
-        $this->assertMatchesRegularExpression('/(\w+\.? ?){3,4}/', $value);
-    }
+    $this->assertMatchesRegularExpression('/(\w+\.? ?){3,4}/', $value);
+});
 
-    /** @test */
-    public function middle_name_attribute(): void
-    {
-        $value = $this->🙃->person->middle_name;
+test('male_first_name attribute', function () {
+    $value = $this->🙃->person->male_first_name;
 
-        $this->assertMatchesRegularExpression('/(\w+\.? ?){3,4}/', $value);
-    }
+    $this->assertIsString($value);
+});
 
-    /** @test */
-    public function male_first_name_attribute(): void
-    {
-        $value = $this->🙃->person->male_first_name;
+test('female_first_name attribute', function () {
+    $value = $this->🙃->person->female_first_name;
 
-        $this->assertIsString($value);
-    }
+    $this->assertIsString($value);
+});
 
-    /** @test */
-    public function female_first_name_attribute(): void
-    {
-        $value = $this->🙃->person->female_first_name;
+test('last_name attribute', function () {
+    $value = $this->🙃->person->last_name;
 
-        $this->assertIsString($value);
-    }
+    $this->assertMatchesRegularExpression('/(\w+\.? ?){3,4}/', $value);
+});
 
-    /** @test */
-    public function last_name_attribute(): void
-    {
-        $value = $this->🙃->person->last_name;
+test('prefix attribute', function () {
+    $value = $this->🙃->person->prefix;
 
-        $this->assertMatchesRegularExpression('/(\w+\.? ?){3,4}/', $value);
-    }
+    $this->assertMatchesRegularExpression('/[A-Z][a-z]+\.?/', $value);
+});
 
-    /** @test */
-    public function prefix_attribute(): void
-    {
-        $value = $this->🙃->person->prefix;
+test('suffix attribute', function () {
+    $value = $this->🙃->person->suffix;
 
-        $this->assertMatchesRegularExpression('/[A-Z][a-z]+\.?/', $value);
-    }
+    $this->assertMatchesRegularExpression('/[A-Z][a-z]*\.?/', $value);
+});
 
-    /** @test */
-    public function suffix_attribute(): void
-    {
-        $value = $this->🙃->person->suffix;
+// endregion
 
-        $this->assertMatchesRegularExpression('/[A-Z][a-z]*\.?/', $value);
-    }
+// region Methods
 
-    // endregion
+test('initials() method with default length', function () {
+    $value = $this->🙃->person->initials();
 
-    // region Methods
+    $this->assertEquals(3, strlen($value));
+});
 
-    /** @test */
-    public function initials_method_with_default_length(): void
-    {
-        $value = $this->🙃->person->initials();
+test('initials() method with given length', function () {
+    $value = $this->🙃->person->initials($times = random_int(2, 10));
 
-        $this->assertEquals(3, strlen($value));
-    }
+    $this->assertEquals($times, strlen($value));
+});
 
-    /** @test */
-    public function initials_method_with_given_length(): void
-    {
-        $value = $this->🙃->person->initials($times = random_int(2, 10));
+// endregion
 
-        $this->assertEquals($times, strlen($value));
-    }
+// region Methods as Attributes
 
-    // endregion
+test('initials() method as an attribute', function () {
+    $value = $this->🙃->person->initials;
 
-    // region Methods as Attributes
+    $this->assertEquals(3, strlen($value));
+});
 
-    /** @test */
-    public function initials_method_as_an_attribute(): void
-    {
-        $value = $this->🙃->person->initials;
-
-        $this->assertEquals(3, strlen($value));
-    }
-
-    // endregion
-}
+// endregion

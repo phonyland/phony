@@ -1,20 +1,5 @@
 <?php
 
-namespace Phonyland\Tests\Phony;
-
-use Phonyland\Phony;
-use PHPUnit\Framework\TestCase;
-use RuntimeException;
-
-class LoaderTest extends TestCase
-{
-    /** @test */
-    public function throws_exception_if_file_not_found(): void
-    {
-        $this->expectException(RuntimeException::class);
-
-        $🙃 = new Phony('invalid-locale');
-
-        $🙃->alphabet->uppercase_letter;
-    }
-}
+it('throws exception if file not found', function () {
+    (new \Phonyland\Phony('invalid-locale'))->alphabet->uppercase_letter;
+})->throws(RuntimeException::class);

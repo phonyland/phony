@@ -1,37 +1,14 @@
 <?php
 
-namespace Phonyland\Tests\Phony;
+it('can not access undefined magic attribute', function () {
+    $this->🙃->not_exist;
+})->throws(RuntimeException::class);
 
-use Phonyland\Tests\BaseTest;
-use RuntimeException;
+it('can not set a magic attribute', function () {
+    $this->🙃->alphabet = 'can-not';
+})->throws(RuntimeException::class);
 
-class PhonyMagicTest extends BaseTest
-{
-    /** @test */
-    public function can_not_access_undefined_magic_attribute(): void
-    {
-        $this->expectException(RuntimeException::class);
-
-        $this->🙃->not_exist;
-    }
-
-    /** @test */
-    public function can_not_set_a_magic_attribute(): void
-    {
-        $this->expectException(RuntimeException::class);
-
-        $this->🙃->alphabet = 'can-not';
-    }
-
-    /** @test */
-    public function can_check_existence_with_magic_isset(): void
-    {
-        $this->assertTrue(
-            isset($this->🙃->alphabet)
-        );
-
-        $this->assertFalse(
-            isset($this->🙃->not_exist)
-        );
-    }
-}
+it('can check existence with magic isset', function () {
+    $this->assertTrue(isset($this->🙃->alphabet));
+    $this->assertFalse(isset($this->🙃->not_exist));
+});

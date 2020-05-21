@@ -1,57 +1,40 @@
 <?php
 
-namespace Phonyland\Tests\Standard;
+// region Attributes
 
-use Phonyland\Tests\Locale\Tr\BaseTrTest;
+test('male_first_name attribute', function () {
+    $value = $this->🙃->person->male_first_name;
 
-class PersonTrTest extends BaseTrTest
-{
-    // region Attributes
+    $this->assertIsString($value);
+});
 
-    /** @test */
-    public function male_first_name_attribute(): void
-    {
-        $value = $this->🙃->person->male_first_name;
+test('female_first_name attribute', function () {
+    $value = $this->🙃->person->female_first_name;
 
-        $this->assertIsString($value);
-    }
+    $this->assertIsString($value);
+});
 
-    /** @test */
-    public function female_first_name_attribute(): void
-    {
-        $value = $this->🙃->person->female_first_name;
+test('last_name attribute', function () {
+    $value = $this->🙃->person->last_name;
 
-        $this->assertIsString($value);
-    }
+    $this->assertTrue(mb_ereg_match('(\w+\.? ?){3,4}', $value));
+});
 
-    /** @test */
-    public function last_name_attribute(): void
-    {
-        $value = $this->🙃->person->last_name;
+// endregion
 
-        $this->assertTrue(mb_ereg_match('(\w+\.? ?){3,4}', $value));
-    }
+// region Methods
 
-    // endregion
+test('initials() method with default length', function () {
+    $value = $this->🙃->person->initials();
 
-    // region Methods
+    $this->assertEquals(6, mb_strlen($value, 'utf-8'));
+});
 
-    /** @test */
-    public function initials_method_with_default_length(): void
-    {
-        $value = $this->🙃->person->initials();
+test('initials() method with given length', function () {
+    $times = random_int(2, 10);
+    $value = $this->🙃->person->initials($times);
 
-        $this->assertEquals(6, mb_strlen($value, 'utf-8'));
-    }
+    $this->assertEquals($times * 2, mb_strlen($value, 'utf-8'));
+});
 
-    /** @test */
-    public function initials_method_with_given_length(): void
-    {
-        $times = random_int(2, 10);
-        $value = $this->🙃->person->initials($times);
-
-        $this->assertEquals($times * 2, mb_strlen($value, 'utf-8'));
-    }
-
-    // endregion
-}
+// endregion

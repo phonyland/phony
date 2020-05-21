@@ -1,20 +1,11 @@
 <?php
 
-namespace Phonyland\Tests\Group\Standard;
+// region Attributes
 
-use Phonyland\Tests\BaseTest;
+test('name attribute', function () {
+    $value = $this->🙃->artist->name;
 
-class ArtistTest extends BaseTest
-{
-    // region Attributes
+    $this->assertMatchesRegularExpression('/\w+/', $value);
+});
 
-    /** @test */
-    public function name_attribute(): void
-    {
-        $value = $this->🙃->artist->name;
-
-        $this->assertMatchesRegularExpression('/\w+/', $value);
-    }
-
-    // endregion
-}
+// endregion

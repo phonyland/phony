@@ -1,28 +1,17 @@
 <?php
 
-namespace Phonyland\Tests\Group\Standard;
+// region Attributes
 
-use Phonyland\Tests\BaseTest;
+test('flip attribute', function () {
+    $value = $this->🙃->coin->flip;
 
-class CoinTest extends BaseTest
-{
-    // region Attributes
+    $this->assertMatchesRegularExpression('/\w+/', $value);
+});
 
-    /** @test */
-    public function flip_attribute(): void
-    {
-        $value = $this->🙃->coin->flip;
+test('name attribute', function () {
+    $value = $this->🙃->coin->name;
 
-        $this->assertMatchesRegularExpression('/\w+/', $value);
-    }
+    $this->assertMatchesRegularExpression('/\w+/', $value);
+});
 
-    /** @test */
-    public function name_attribute(): void
-    {
-        $value = $this->🙃->coin->name;
-
-        $this->assertMatchesRegularExpression('/\w+/', $value);
-    }
-
-    // endregion
-}
+// endregion

@@ -1,122 +1,95 @@
 <?php
 
-namespace Phonyland\Tests\Phony;
+it('can numerify with hash sign', function () {
+    $value = (int) $this->callPrivateFakeMethod('numerify', '###');
 
-use Phonyland\Tests\BaseTest;
+    $this->assertMatchesRegularExpression('/^[\d]{0,3}$/', $value);
+});
 
-class FakeOperationTest extends BaseTest
-{
-    /** @test */
-    public function can_numerify_with_hash_sign(): void
-    {
-        $value = (int) $this->callPrivateFakeMethod('numerify', '###');
+it('can hexify with hash sign', function () {
+    $value = $this->callPrivateFakeMethod('hexify', '###');
 
-        $this->assertMatchesRegularExpression('/^[\d]{0,3}$/', $value);
+    $this->assertMatchesRegularExpression('/^[a-z0-9]{3}$/', $value);
+});
+
+it('can hexify arrays', function () {
+    $testArray = [
+        '#',
+        '##',
+        '###',
+    ];
+
+    $result = $this->callPrivateFakeMethod('hexify', $testArray);
+
+    foreach ($result as $item) {
+        $this->assertMatchesRegularExpression('/^[a-z0-9]{1,3}$/', $item);
     }
+});
 
-    /** @test */
-    public function can_hexify_with_hash_sign(): void
-    {
-        $value = $this->callPrivateFakeMethod('hexify', '###');
+it('can numerify with percentage sign', function () {
+    $value = (int) $this->callPrivateFakeMethod('numerify', '%%%');
 
-        $this->assertMatchesRegularExpression('/^[a-z0-9]{3}$/', $value);
+    $this->assertMatchesRegularExpression('/^[\d]{3}$/', $value);
+});
+
+it('can numerify arrays', function () {
+    $testArray = [
+        '##',
+        '%%',
+        '#%',
+    ];
+
+    $result = $this->callPrivateFakeMethod('numerify', $testArray);
+
+    foreach ($result as $item) {
+        $this->assertMatchesRegularExpression('/^[\d]{1,2}$/', (int) $item);
     }
+});
 
-    /** @test */
-    public function can_hexify_arrays(): void
-    {
-        $testArray = [
-            '#',
-            '##',
-            '###',
-        ];
+it('can letterify', function () {
+    $value = $this->callPrivateFakeMethod('letterify', '???');
 
-        $result = $this->callPrivateFakeMethod('hexify', $testArray);
+    $this->assertMatchesRegularExpression('/^[\w]{3}$/', $value);
+});
 
-        foreach ($result as $item) {
-            $this->assertMatchesRegularExpression('/^[a-z0-9]{1,3}$/', $item);
-        }
+it('can letterify arrays', function () {
+    $testArray = [
+        '?',
+        '??',
+        '???',
+    ];
+
+    $result = $this->callPrivateFakeMethod('letterify', $testArray);
+
+    foreach ($result as $item) {
+        $this->assertMatchesRegularExpression('/^[A-Za-z]{1,3}$/', $item);
     }
+});
 
-    /** @test */
-    public function can_numerify_with_percentage_sign(): void
-    {
-        $value = (int) $this->callPrivateFakeMethod('numerify', '%%%');
+it('can bothify', function () {
+    $value = $this->callPrivateFakeMethod('bothify', '?#%');
 
-        $this->assertMatchesRegularExpression('/^[\d]{3}$/', $value);
+    $this->assertMatchesRegularExpression('/^[\w]{3}$/', $value);
+});
+
+it('can bothify with asterix', function () {
+    $value = $this->callPrivateFakeMethod('bothify', '***');
+
+    $this->assertMatchesRegularExpression('/^[\w]{3}$/', $value);
+});
+
+it('can bothify arrays', function () {
+    $testArray = [
+        '#',
+        '?',
+        '*',
+        '**',
+        '#?*',
+    ];
+
+    $result = $this->callPrivateFakeMethod('bothify', $testArray);
+
+    foreach ($result as $item) {
+        $this->assertMatchesRegularExpression('/^[\w]{1,3}$/', $item);
     }
-
-    /** @test */
-    public function can_numerify_arrays(): void
-    {
-        $testArray = [
-            '##',
-            '%%',
-            '#%',
-        ];
-
-        $result = $this->callPrivateFakeMethod('numerify', $testArray);
-
-        foreach ($result as $item) {
-            $this->assertMatchesRegularExpression('/^[\d]{1,2}$/', (int) $item);
-        }
-    }
-
-    /** @test */
-    public function can_letterify(): void
-    {
-        $value = $this->callPrivateFakeMethod('letterify', '???');
-
-        $this->assertMatchesRegularExpression('/^[\w]{3}$/', $value);
-    }
-
-    /** @test */
-    public function can_letterify_arrays(): void
-    {
-        $testArray = [
-            '?',
-            '??',
-            '???',
-        ];
-
-        $result = $this->callPrivateFakeMethod('letterify', $testArray);
-
-        foreach ($result as $item) {
-            $this->assertMatchesRegularExpression('/^[A-Za-z]{1,3}$/', $item);
-        }
-    }
-
-    /** @test */
-    public function can_bothify(): void
-    {
-        $value = $this->callPrivateFakeMethod('bothify', '?#%');
-
-        $this->assertMatchesRegularExpression('/^[\w]{3}$/', $value);
-    }
-
-    /** @test */
-    public function can_bothify_with_asterix(): void
-    {
-        $value = $this->callPrivateFakeMethod('bothify', '***');
-
-        $this->assertMatchesRegularExpression('/^[\w]{3}$/', $value);
-    }
-
-    /** @test */
-    public function can_bothify_arrays(): void
-    {
-        $testArray = [
-            '#',
-            '?',
-            '*',
-            '**',
-            '#?*',
-        ];
-
-        $result = $this->callPrivateFakeMethod('bothify', $testArray);
-
-        foreach ($result as $item) {
-            $this->assertMatchesRegularExpression('/^[\w]{1,3}$/', $item);
-        }
-    }
-}
+});

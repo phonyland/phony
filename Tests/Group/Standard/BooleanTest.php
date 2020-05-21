@@ -1,48 +1,33 @@
 <?php
 
-namespace Phonyland\Tests\Group\Standard;
+// region Attributes
 
-use Phonyland\Tests\BaseTest;
+test('boolean attribute', function () {
+    $value = $this->🙃->boolean->boolean;
 
-class BooleanTest extends BaseTest
-{
-    // region Attributes
+    $this->assertIsBool($value);
+});
 
-    /** @test */
-    public function boolean_attribute(): void
-    {
-        $value = $this->🙃->boolean->boolean;
+// endregion
 
-        $this->assertIsBool($value);
-    }
+// region Methods
 
-    // endregion
+test('boolean() method returns a boolean value', function () {
+    $value = $this->🙃->boolean->boolean();
 
-    // region Methods
+    $this->assertIsBool($value);
+});
 
-    /** @test */
-    public function boolean_method_returns_a_boolean_value(): void
-    {
-        $value = $this->🙃->boolean->boolean();
+test('boolean() method with $truePercentage=100 returns always true', function () {
+    $value = $this->🙃->boolean->boolean(100);
 
-        $this->assertIsBool($value);
-    }
+    $this->assertTrue($value);
+});
 
-    /** @test */
-    public function boolean_method_with_100_truePercentage_returns_always_true(): void
-    {
-        $value = $this->🙃->boolean->boolean(100);
+test('boolean() method with $truePercentage=0 returns always false', function () {
+    $value = $this->🙃->boolean->boolean(0);
 
-        $this->assertTrue($value);
-    }
+    $this->assertFalse($value);
+});
 
-    /** @test */
-    public function boolean_method_with_0_truePercentage_returns_always_false(): void
-    {
-        $value = $this->🙃->boolean->boolean(0);
-
-        $this->assertFalse($value);
-    }
-
-    // endregion
-}
+// endregion

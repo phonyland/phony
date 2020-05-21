@@ -1,36 +1,23 @@
 <?php
 
-namespace Phonyland\Tests\Group\Standard;
+// region Attributes
 
-use Phonyland\Tests\BaseTest;
+test('name attribute', function () {
+    $value = $this->🙃->currency->name;
 
-class CurrencyTest extends BaseTest
-{
-    // region Attributes
+    $this->assertMatchesRegularExpression('/\w+/', $value);
+});
 
-    /** @test */
-    public function name_attribute(): void
-    {
-        $value = $this->🙃->currency->name;
+test('code attribute', function () {
+    $value = $this->🙃->currency->code;
 
-        $this->assertMatchesRegularExpression('/\w+/', $value);
-    }
+    $this->assertMatchesRegularExpression('/[A-Z]{3}/', $value);
+});
 
-    /** @test */
-    public function code_attribute(): void
-    {
-        $value = $this->🙃->currency->code;
+test('symbol attribute', function () {
+    $value = $this->🙃->currency->symbol;
 
-        $this->assertMatchesRegularExpression('/[A-Z]{3}/', $value);
-    }
+    $this->assertIsString($value);
+});
 
-    /** @test */
-    public function symbol_attribute(): void
-    {
-        $value = $this->🙃->currency->symbol;
-
-        $this->assertIsString($value);
-    }
-
-    // endregion
-}
+// endregion

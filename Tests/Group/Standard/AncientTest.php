@@ -1,44 +1,29 @@
 <?php
 
-namespace Phonyland\Tests\Group\Standard;
+// region Attributes
 
-use Phonyland\Tests\BaseTest;
+test('god attribute', function () {
+    $value = $this->🙃->ancient->god;
 
-class AncientTest extends BaseTest
-{
-    // region Attributes
+    $this->assertMatchesRegularExpression('/\w+/', $value);
+});
 
-    /** @test */
-    public function god_attribute(): void
-    {
-        $value = $this->🙃->ancient->god;
+test('primordial attribute', function () {
+    $value = $this->🙃->ancient->primordial;
 
-        $this->assertMatchesRegularExpression('/\w+/', $value);
-    }
+    $this->assertMatchesRegularExpression('/\w+/', $value);
+});
 
-    /** @test */
-    public function primordial_attribute(): void
-    {
-        $value = $this->🙃->ancient->primordial;
+test('titan attribute', function () {
+    $value = $this->🙃->ancient->titan;
 
-        $this->assertMatchesRegularExpression('/\w+/', $value);
-    }
+    $this->assertMatchesRegularExpression('/\w+/', $value);
+});
 
-    /** @test */
-    public function titan_attribute(): void
-    {
-        $value = $this->🙃->ancient->titan;
+test('hero attribute', function () {
+    $value = $this->🙃->ancient->hero;
 
-        $this->assertMatchesRegularExpression('/\w+/', $value);
-    }
+    $this->assertMatchesRegularExpression('/\w+/', $value);
+});
 
-    /** @test */
-    public function hero_attribute(): void
-    {
-        $value = $this->🙃->ancient->hero;
-
-        $this->assertMatchesRegularExpression('/\w+/', $value);
-    }
-
-    // endregion
-}
+// endregion

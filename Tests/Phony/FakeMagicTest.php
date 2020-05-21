@@ -1,55 +1,29 @@
 <?php
 
-namespace Phonyland\Tests\Phony;
+it('can not access undefined magic attribute', function () {
+    $this->expectException(RuntimeException::class);
 
-use Phonyland\Tests\BaseTest;
-use RuntimeException;
+    $this->🙃->alphabet->not_exist;
+});
 
-class FakeMagicTest extends BaseTest
-{
-    /** @test
-     *
-     * @noinspection PhpUndefinedFieldInspection
-     */
-    public function can_not_access_undefined_magic_attribute(): void
-    {
-        $this->expectException(RuntimeException::class);
+it('can not set a magic attribute', function () {
+    $this->expectException(RuntimeException::class);
 
-        $this->🙃->alphabet->not_exist;
-    }
+    $this->🙃->alphabet->uppercase_letter = 'can-not';
+});
 
-    /** @test
-     *
-     * @noinspection UnknownInspectionInspection
-     * @noinspection Annotator
-     */
-    public function can_not_set_a_magic_attribute(): void
-    {
-        $this->expectException(RuntimeException::class);
+it('can check existence with magic isset', function () {
+    $this->assertTrue(
+        isset($this->🙃->alphabet->uppercase_letter)
+    );
 
-        $this->🙃->alphabet->uppercase_letter = 'can-not';
-    }
+    $this->assertFalse(
+        isset($this->🙃->alphabet->not_exist)
+    );
+});
 
-    /** @test */
-    public function can_check_existence_with_magic_isset(): void
-    {
-        $this->assertTrue(
-            isset($this->🙃->alphabet->uppercase_letter)
-        );
+it('can not access undefined magic method', function () {
+    $this->expectException(RuntimeException::class);
 
-        $this->assertFalse(
-            isset($this->🙃->alphabet->not_exist)
-        );
-    }
-
-    /** @test
-     *
-     * @noinspection PhpUndefinedMethodInspection
-     */
-    public function can_not_access_undefined_magic_method(): void
-    {
-        $this->expectException(RuntimeException::class);
-
-        $this->🙃->alphabet->not_exist();
-    }
-}
+    $this->🙃->alphabet->not_exist();
+});
